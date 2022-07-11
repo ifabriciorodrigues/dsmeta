@@ -1,5 +1,11 @@
+import Header from "./components/Header"
+import Home from "./screens/Home"
+
 const App = () => (
-  <h1>App</h1>
+  <div>
+    <Header />
+    <Home />
+  </div>
 )
 
 export default App
