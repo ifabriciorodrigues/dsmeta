@@ -1,16 +1,31 @@
-import { FormContainer, Heading, Input } from './styles'
+import { DatepickerWrapper, FormContainer, Heading } from './styles'
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 
 const SalesCardHeader = () => (
   <div>
     <Heading>Vendas</Heading>
+
+    <DatepickerWrapper />
     <div>
       <FormContainer>
-        <Input className="dsmeta-form-control" type="text" />
+        <DatePicker
+          selected={new Date()}
+          onChange={(date: Date) => {}}
+          dateFormat="dd/MM/yyyy"
+          className="datepicker"
+        />
       </FormContainer>
       <FormContainer>
-        <Input className="dsmeta-form-control" type="text" />
+        <DatePicker
+          selected={new Date()}
+          onChange={(date: Date) => {}}
+          dateFormat="dd/MM/yyyy"
+          className="datepicker"
+        />
       </FormContainer>
     </div>
+
   </div>
 )
 
