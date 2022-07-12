@@ -6,14 +6,19 @@ interface ITableRow {
   titles: string[]
 }
 
-const TableRow = ({ isHeader, titles}: ITableRow) => (
+const TableRow = ({ isHeader = false, titles}: ITableRow) => (
   <Row>
     {isHeader ? 
       titles.map(title => <th>{title}</th>)
       :
       titles.map(title => <TableData>{title}</TableData>)
     }
-    {!!!isHeader && <IconWrapper><NotificationButton /></IconWrapper>}
+    {!!!isHeader && 
+    (
+      <IconWrapper>
+        <NotificationButton />
+      </IconWrapper>
+    )}
   </Row>
 )
 
