@@ -1,28 +1,26 @@
-import { useEffect, useState } from "react"
-import { Sales } from "../../api/requests"
+import { useState } from "react"
 import SalesCard from "../../components/SalesCard"
+import SalesContext from "../../contexts/SalesContext"
 import Sale from "../../models/Sale"
-import { ONE_YEAR_AGO_DATE, TODAY_DATE } from "./Home.constants"
 import { Content, SalesWrapper } from "./styles"
 
 const Home = () => {
   const [sales, setSales] = useState<Sale[]>([]);
-  
-  useEffect(() => {
-    Sales.getAll(ONE_YEAR_AGO_DATE, TODAY_DATE).then((response) => {
-      setSales(response.content.sort((a,b) => a.id - b.id));
-    })
-    
-  }, [])
+
+  const changeSales = (sales: Sale[]) => {
+    setSales(sales);
+  } 
   
   return (
-    <main>
-      <SalesWrapper>
-        <Content>
-          <SalesCard sales={sales} />
-        </Content>
-      </SalesWrapper>
-    </main>
+    <SalesContext.Provider value={{ changeSales }}> 
+      <main>
+        <SalesWrapper>
+          <Content>
+            <SalesCard sales={sales} />
+          </Content>
+        </SalesWrapper>
+      </main>
+    </SalesContext.Provider> 
   )
 }
 
