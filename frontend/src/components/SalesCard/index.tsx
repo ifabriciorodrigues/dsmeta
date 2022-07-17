@@ -1,24 +1,36 @@
+import Sale from "../../models/Sale"
 import TableRow from "../TableRow"
 import SalesCardHeader from "./SalesCardHeader"
 import { MainContainer, SalesTable, SalesTableBody, SalesTableHead } from "./styles"
 
 const tableHeadTitles = ['ID', 'Data', 'Vendedor', 'Visitas', 'Vendas', 'Total', 'Notificar']
-const tableBodyTitles = ['#341', '08/07/2022', 'Anakin', '16', '11', 'R$ 55300.00']
 
-const SalesCard = () => (
+interface ISalesCard {
+  sales: Sale[]
+}
+
+const SalesCard = ({ sales }:ISalesCard) => (
   <MainContainer>
     <SalesCardHeader />
-
     <div>
       <SalesTable>
         <SalesTableHead>
           <TableRow isHeader={true} titles={tableHeadTitles} />
         </SalesTableHead>
         <SalesTableBody>
-          <TableRow titles={tableBodyTitles} /> 
-          <TableRow titles={tableBodyTitles} /> 
-          <TableRow titles={tableBodyTitles} /> 
-          <TableRow titles={tableBodyTitles} /> 
+          {sales.map((sale) => {
+            return (
+              <TableRow key={sale.id} titles={[
+                sale.id.toString(), 
+                sale.date, 
+                sale.sellerName, 
+                sale.timesVisited.toString(), 
+                sale.quantity.toString(), 
+                sale.total.toString()
+              ]} 
+              />
+            )  
+          })}
         </SalesTableBody>
       </SalesTable>
     </div>

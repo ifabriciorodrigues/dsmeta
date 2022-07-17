@@ -9,14 +9,14 @@ interface ITableRow {
 const TableRow = ({ isHeader = false, titles}: ITableRow) => (
   <Row>
     {isHeader ? 
-      titles.map(title => <th>{title}</th>)
+      titles.map(title => <th key={Math.random()}>{title}</th>)
       :
-      titles.map(title => <TableData>{title}</TableData>)
+      titles.map(title => <TableData key={Math.random()}>{title}</TableData>)
     }
     {!!!isHeader && 
     (
       <IconWrapper>
-        <NotificationButton />
+        <NotificationButton id={titles[0]} />
       </IconWrapper>
     )}
   </Row>
